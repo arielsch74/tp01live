@@ -1,0 +1,210 @@
+{
+  "repo": "arielsch74/tp01live",
+  "url": "https://github.com/arielsch74/tp01live",
+  "total": 18,
+  "cumple": 18,
+  "prs_mergeados": 4,
+  "pr_conflicto": 3,
+  "sha_resolucion": "1edc4260db684d8effdcf740b915c52f25d277f6",
+  "merge_base": "301f094da4ac12a46bbd29c95a28da1ae046552e",
+  "commits_main": [
+    [
+      "eba92b6",
+      "docs: agrega evidencias.md, decisiones.md y las capturas del TP1 (#4)"
+    ],
+    [
+      "d1baff1",
+      "docs: renombra el título del README a Proyecto IngSoft3 - versión B (#3)"
+    ],
+    [
+      "a8e3a5c",
+      "docs: renombra el título del README a Proyecto IngSoft3 - versión A (#2)"
+    ],
+    [
+      "301f094",
+      "Agrega sección de instalación al README (#1)"
+    ],
+    [
+      "fcba76e",
+      "chore: agrega .gitignore base del proyecto"
+    ],
+    [
+      "bd6b83e",
+      "Initial commit"
+    ]
+  ],
+  "resultados": [
+    {
+      "id": "1.a",
+      "requisito": "Repositorio público en la plataforma elegida",
+      "fuente": "GET /repos/arielsch74/tp01live",
+      "estado": "CUMPLE",
+      "detalle": "visibility = public, private = False, default_branch = main",
+      "crudo": "html_url = https://github.com/arielsch74/tp01live"
+    },
+    {
+      "id": "1.b",
+      "requisito": ".gitignore en la raíz",
+      "fuente": "GET /repos/arielsch74/tp01live/contents/.gitignore",
+      "estado": "CUMPLE",
+      "detalle": "presente en la raíz de main, 200 bytes",
+      "crudo": "sha = 247946e26f62"
+    },
+    {
+      "id": "2.a",
+      "requisito": "main protegida: todo cambio entra por Pull Request",
+      "fuente": "GET /repos/arielsch74/tp01live/branches/main/protection",
+      "estado": "CUMPLE",
+      "detalle": "required_pull_request_reviews está activo → GitHub rechaza cualquier push directo a main",
+      "crudo": "required_approving_review_count = 0"
+    },
+    {
+      "id": "2.b",
+      "requisito": "Imposible pushear directo — tampoco para el administrador (sin bypass)",
+      "fuente": "GET /repos/arielsch74/tp01live/branches/main/protection",
+      "estado": "CUMPLE",
+      "detalle": "enforce_admins.enabled = True (equivale a «Do not allow bypassing the above settings»)",
+      "crudo": "allow_force_pushes = False, allow_deletions = False"
+    },
+    {
+      "id": "2.c",
+      "requisito": "Evidencia del rechazo del push directo",
+      "fuente": "GET /repos/arielsch74/tp01live/contents/img/01-push-rechazado.png",
+      "estado": "CUMPLE",
+      "detalle": "captura de la ventana de terminal real en el instante del rechazo, versionada en el repo",
+      "crudo": "864955 bytes · sha = 29d86508e16e"
+    },
+    {
+      "id": "3.a",
+      "requisito": "Al menos 2 Pull Requests mergeados",
+      "fuente": "GET /repos/arielsch74/tp01live/pulls?state=all",
+      "estado": "CUMPLE",
+      "detalle": "4 PRs mergeados",
+      "crudo": "#1 Agrega sección de instalación al README · #2 Título del README: \"Proyecto IngSoft3 - versión A\" · #3 Título del README: \"Proyecto IngSoft3 - versión B\" · #4 Agrega evidencias.md, decisiones.md y las capturas del TP1"
+    },
+    {
+      "id": "3.b",
+      "requisito": "Uno de los PRs requirió resolver un conflicto de merge",
+      "fuente": "GET /repos/arielsch74/tp01live/pulls/<n>/commits (commit con 2 padres)",
+      "estado": "CUMPLE",
+      "detalle": "PR #3 «Título del README: \"Proyecto IngSoft3 - versión B\"» contiene un commit de merge con 2 padres (1edc426): es la resolución del conflicto",
+      "crudo": "41a496a (1 padres) docs: renombra el título del README a Proyecto IngSoft3 - versión B · 1edc426 (2 padres) fix: resuelve el conflicto del título tomando la versión B"
+    },
+    {
+      "id": "3.b.2",
+      "requisito": "Las dos ramas del conflicto nacieron del mismo commit (conflicto real)",
+      "fuente": "GET /repos/arielsch74/tp01live/compare/<padre1>...<padre2> → merge_base_commit",
+      "estado": "CUMPLE",
+      "detalle": "los dos padres del commit de resolución tienen como ancestro común a 301f094: las dos ramas salieron del mismo main. Si la rama B hubiera nacido de la A no habría habido conflicto y el ejercicio no probaría nada",
+      "crudo": "padres = 41a496a, a8e3a5c · merge_base = 301f094"
+    },
+    {
+      "id": "3.c",
+      "requisito": "Todo cambio entra por PR (incluidos evidencias.md y decisiones.md)",
+      "fuente": "GET /repos/arielsch74/tp01live/commits",
+      "estado": "CUMPLE",
+      "detalle": "4 de 6 commits de main son merges de PR (squash). Los que no lo son son anteriores a la protección: el commit inicial del repositorio y el del .gitignore (§4.3 de la guía va antes de §4.4)",
+      "crudo": "eba92b6 docs: agrega evidencias.md, decisiones.md y las capturas del TP1 (#4) · d1baff1 docs: renombra el título del README a Proyecto IngSoft3 - versión B (#3) · a8e3a5c docs: renombra el título del README a Proyecto IngSoft3 - versión A (#2) · 301f094 Agrega sección de instalación al README (#1) · fcba76e chore: agrega .gitignore base del proyecto · bd6b83e Initial commit"
+    },
+    {
+      "id": "3.d",
+      "requisito": "Los dos archivos de la entrega llegaron a main por Pull Request",
+      "fuente": "GET /repos/<r>/commits?path=decisiones.md",
+      "estado": "CUMPLE",
+      "detalle": "decisiones.md entró en el commit «docs: agrega evidencias.md, decisiones.md y las capturas del TP1 (#4)», que es un merge de PR",
+      "crudo": "docs: agrega evidencias.md, decisiones.md y las capturas del TP1 (#4)"
+    },
+    {
+      "id": "3.e",
+      "requisito": "Ramas de feature borradas después de integrar",
+      "fuente": "GET /repos/arielsch74/tp01live/branches",
+      "estado": "CUMPLE",
+      "detalle": "ramas vivas: main",
+      "crudo": "['main']"
+    },
+    {
+      "id": "4.a",
+      "requisito": "Tag v1.0.0 (semver) sobre main",
+      "fuente": "GET /repos/arielsch74/tp01live/git/ref/tags/v1.0.0 + git merge-base --is-ancestor",
+      "estado": "CUMPLE",
+      "detalle": "tag anotado apuntando al commit d1baff1, que es ancestro de main",
+      "crudo": "mensaje del tag: «Primera versión estable del TP1: flujo de trabajo del equipo funcionando»"
+    },
+    {
+      "id": "4.b",
+      "requisito": "Release publicada con notas de qué incluye",
+      "fuente": "GET /repos/arielsch74/tp01live/releases/tags/v1.0.0",
+      "estado": "CUMPLE",
+      "detalle": "release «v1.0.0» publicada (draft = False, prerelease = False), notas de 1686 caracteres",
+      "crudo": "https://github.com/arielsch74/tp01live/releases/tag/v1.0.0"
+    },
+    {
+      "id": "5.b",
+      "requisito": "`decisiones.md` en la raíz del repositorio",
+      "fuente": "GET /repos/arielsch74/tp01live/contents/decisiones.md",
+      "estado": "CUMPLE",
+      "detalle": "presente en main, 12966 bytes",
+      "crudo": "sha = e148c15c2680"
+    },
+    {
+      "id": "5.c",
+      "requisito": "`evidencias.md` en la raíz del repositorio",
+      "fuente": "GET /repos/arielsch74/tp01live/contents/evidencias.md",
+      "estado": "CUMPLE",
+      "detalle": "presente en main, 4108 bytes",
+      "crudo": "sha = b3856406d9b5"
+    },
+    {
+      "id": "5.d",
+      "requisito": "Las cuatro capturas 📸 están versionadas en el repositorio",
+      "fuente": "GET /repos/arielsch74/tp01live/contents/img/*",
+      "estado": "CUMPLE",
+      "detalle": "4/4 presentes",
+      "crudo": "01-push-rechazado.png 864955 bytes · 02-conflicto-en-pr.png 424350 bytes · 03-marcadores-conflicto.png 95136 bytes · 04-release-publicada.png 397425 bytes"
+    },
+    {
+      "id": "5.e",
+      "requisito": "evidencias.md referencia y describe las cuatro capturas",
+      "fuente": "contenido de evidencias.md en main",
+      "estado": "CUMPLE",
+      "detalle": "4/4 capturas referenciadas desde el markdown",
+      "crudo": "img/01-push-rechazado.png · img/02-conflicto-en-pr.png · img/03-marcadores-conflicto.png · img/04-release-publicada.png"
+    },
+    {
+      "id": "5.f",
+      "requisito": "decisiones.md cubre los tres puntos que pide el enunciado",
+      "fuente": "contenido de decisiones.md en main",
+      "estado": "CUMPLE",
+      "detalle": "4/4 secciones presentes",
+      "crudo": "por qué Git no pudo resolver el conflicto solo: sí · qué habría tenido que pasar para que nunca apareciera: sí · problemas encontrados y cómo se resolvieron: sí · declaración de uso de IA: sí"
+    }
+  ],
+  "prs": [
+    {
+      "n": 1,
+      "titulo": "Agrega sección de instalación al README",
+      "rama": "feature/seccion-instalacion",
+      "merged_at": "2026-08-06T00:59:08Z"
+    },
+    {
+      "n": 2,
+      "titulo": "Título del README: \"Proyecto IngSoft3 - versión A\"",
+      "rama": "feature/titulo-a",
+      "merged_at": "2026-08-06T00:59:52Z"
+    },
+    {
+      "n": 3,
+      "titulo": "Título del README: \"Proyecto IngSoft3 - versión B\"",
+      "rama": "feature/titulo-b",
+      "merged_at": "2026-08-06T01:05:08Z"
+    },
+    {
+      "n": 4,
+      "titulo": "Agrega evidencias.md, decisiones.md y las capturas del TP1",
+      "rama": "feature/entrega-tp01",
+      "merged_at": "2026-08-06T01:08:51Z"
+    }
+  ],
+  "release_url": "https://github.com/arielsch74/tp01live/releases/tag/v1.0.0",
+  "tag_commit": "d1baff15e4e274b051a61b2fc40c76bb2fefa57f"
+}
